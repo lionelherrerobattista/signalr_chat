@@ -1,5 +1,10 @@
 <h1>SignalR chat</h1>
-<form>
-  <input type="text" name="chat" id="chat" />
-  <button>Send</button>
+<!-- TODO: alternate messages sent with messages received -->
+@for(message of this.chatApi.messages(); track $index) {
+<p>{{ message.username + ': ' + message.text }}</p>
+}
+<form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+  <label for="message">Message:</label>
+  <input type="text" name="message" id="message" formControlName="message" />
+  <button type="submit" [disabled]="!messageForm.valid">Send</button>
 </form>

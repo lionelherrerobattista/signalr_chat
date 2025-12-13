@@ -1,6 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 import { HubConnection, HubConnectionBuilder, HubConnectionState } from '@microsoft/signalr';
 import { catchError, defer, from, map, of, throwError } from 'rxjs';
+
+export interface Message {
+  text: string;
+  username: string;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -8,6 +13,8 @@ import { catchError, defer, from, map, of, throwError } from 'rxjs';
 export class ChatApi {
   private connection: HubConnection;
   private baseUrl = 'http://localhost:5137';
+  // TODO: save messages sent and received
+  messages = signal<Message[]>([]); // convert to signal
 
   constructor() {
     // initialize connection and handlers
@@ -19,10 +26,16 @@ export class ChatApi {
   private createHandlers() {
     // define handlers
     this.connection.on('messageReceived', (username: string, message: string) => {
-      console.log(`${username}: ${message} `);
+      console.log(`${username}: ${message}`);
+      // add message to array
+      this.messages.update((messages) => [...messages, { username, text: message }]);
     });
   }
 
+  /**
+   * Starts the connection with the SinglarR hub
+   * @returns true if the hub is connected
+   */
   startConnection() {
     // return observable, lazy
     return defer(() => {
@@ -42,6 +55,12 @@ export class ChatApi {
     });
   }
 
+  /**
+   * Sends a user's message to the hub
+   * @param user user that sends the message
+   * @param message message to send to the hub
+   * @returns
+   */
   sendMessage(user: string, message: string) {
     if (this.connection.state !== HubConnectionState.Connected) {
       console.warn('SignalR is not yet connected.');
