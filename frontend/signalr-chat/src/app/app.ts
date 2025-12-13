@@ -1,37 +1,29 @@
-import { Component, OnInit, signal } from '@angular/core';
-import { HubConnection } from '@microsoft/signalr';
-import { HubConnectionBuilder } from '@microsoft/signalr';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ChatApi } from './chat/chat-api';
 
 // import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
 export class App implements OnInit {
   text = signal('');
-  connection: HubConnection;
+  chatApi = inject(ChatApi);
 
-  constructor() {
-    // create connection
-    this.connection = new HubConnectionBuilder().withUrl('http://localhost:5137/hub').build();
-  }
+  constructor() {}
 
   ngOnInit(): void {
-    // define handlers
-    this.connection.on('messageReceived', (username: string, message: string) => {
-      console.log(`${username}: ${message} `);
+    this.chatApi.startConnection().subscribe(() => {
+      // send testing message
+      this.sendMessage();
     });
+  }
 
-    // start connection
-    this.connection
-      .start()
-      .then(() => {
-        // Call a method from hub
-        this.connection.send('NewMessage', 'testUser', 'This is a test.');
-      })
-      .catch((err) => console.error(err));
+  sendMessage() {
+    this.chatApi.sendMessage('testUser', 'This is a test');
   }
 }
