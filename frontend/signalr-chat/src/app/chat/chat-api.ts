@@ -13,6 +13,7 @@ export interface Message {
 export class ChatApi {
   private connection: HubConnection;
   private baseUrl = 'http://localhost:5137';
+  private groupName = 'testChat';
   // TODO: save messages sent and received
   messages = signal<Message[]>([]); // convert to signal
 
@@ -26,6 +27,9 @@ export class ChatApi {
     this.createHandlers();
   }
 
+  /**
+   * Creates the handlers for the SignalR connection
+   */
   private createHandlers() {
     // handle to reconnect with the server on disconnect
     this.connection.onreconnecting((err) => {
@@ -48,7 +52,7 @@ export class ChatApi {
   }
 
   /**
-   * Starts the connection with the SinglarR hub
+   * Starts the connection with the SignalR hub
    * @returns true if the hub is connected
    */
   startConnection() {
@@ -57,7 +61,7 @@ export class ChatApi {
     // return observable, lazy
     return defer(() => {
       // check if already connected
-      if (this.connection.state == HubConnectionState.Connected)
+      if (this.connection.state === HubConnectionState.Connected)
         // or return of(this.connection); expose connection obj?
         return of(true);
 
@@ -70,6 +74,15 @@ export class ChatApi {
         })
       );
     });
+  }
+
+  addUserToGroup() {
+    if (this.connection.state !== HubConnectionState.Connected) {
+      console.warn('SignalR is not yet connected.');
+      return;
+    }
+
+    this.connection.invoke('AddToGroup', this.groupName).then((message) => console.log(message));
   }
 
   /**
@@ -85,6 +98,6 @@ export class ChatApi {
     }
 
     // don't care about response for now
-    this.connection.send('NewMessage', user, message);
+    this.connection.send('NewMessage', user, message, this.groupName);
   }
 }

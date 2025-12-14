@@ -20,7 +20,8 @@ export class App implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.chatApi.startConnection().subscribe();
+    // start connection and add user to group
+    this.chatApi.startConnection().subscribe(() => this.chatApi.addUserToGroup());
   }
 
   sendMessage(message: string) {
