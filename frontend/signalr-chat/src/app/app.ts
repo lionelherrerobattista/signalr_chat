@@ -13,6 +13,9 @@ import { ChatApi } from './chat/chat-api';
 export class App implements OnInit {
   text = signal('');
   chatApi = inject(ChatApi);
+  usernameForm = new FormGroup({
+    username: new FormControl(''),
+  });
   messageForm = new FormGroup({
     message: new FormControl(''),
   });
@@ -25,7 +28,7 @@ export class App implements OnInit {
   }
 
   sendMessage(message: string) {
-    this.chatApi.sendMessage('testUser', message);
+    this.chatApi.sendMessage(message);
   }
 
   onSubmit() {
@@ -35,5 +38,13 @@ export class App implements OnInit {
     if (message) this.sendMessage(message);
 
     this.messageForm.reset();
+  }
+
+  onSubmitUsername() {
+    const { username } = this.usernameForm.value;
+
+    if (username) this.chatApi.createUser(username);
+
+    this.usernameForm.reset();
   }
 }

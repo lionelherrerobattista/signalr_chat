@@ -14,6 +14,10 @@ export class ChatApi {
   private connection: HubConnection;
   private baseUrl = 'http://localhost:5137';
   private groupName = 'testChat';
+  user = signal({
+    username: '',
+    connectionId: '',
+  });
   // TODO: save messages sent and received
   messages = signal<Message[]>([]); // convert to signal
 
@@ -43,6 +47,17 @@ export class ChatApi {
     });
 
     // define message handlers
+    this.connection.on('userConnected', (connectionId) => {
+      console.log(connectionId);
+
+      // add message to array
+      this.user.update((value) => {
+        return {
+          ...value,
+          connectionId,
+        };
+      });
+    });
 
     this.connection.on('messageReceived', (username: string, message: string) => {
       console.log(`${username}: ${message}`);
@@ -67,12 +82,21 @@ export class ChatApi {
 
       // start connection
       return from(this.connection.start()).pipe(
-        map(() => true), // or return connection
+        map((response) => true), // TODO: use connection id to map connectionId -> username
         catchError((err) => {
           console.error('SignalR failed to start', err);
           return throwError(() => err);
         })
       );
+    });
+  }
+
+  createUser(username: string) {
+    this.user.update((value) => {
+      return {
+        ...value,
+        username,
+      };
     });
   }
 
@@ -87,17 +111,16 @@ export class ChatApi {
 
   /**
    * Sends a user's message to the hub
-   * @param user user that sends the message
    * @param message message to send to the hub
    * @returns
    */
-  sendMessage(user: string, message: string) {
+  sendMessage(message: string) {
     if (this.connection.state !== HubConnectionState.Connected) {
       console.warn('SignalR is not yet connected.');
       return;
     }
 
     // don't care about response for now
-    this.connection.send('NewMessage', user, message, this.groupName);
+    this.connection.send('NewMessage', this.user().username, message, this.groupName);
   }
 }

@@ -4,11 +4,15 @@ namespace ChatApi.Hubs
 {
     public class ChatHub : Hub
     {
+        public override async Task OnConnectedAsync()
+        {
+            await Clients.Caller.SendAsync("userConnected", Context.ConnectionId);
+
+            await base.OnConnectedAsync();
+        }
         public override async Task OnDisconnectedAsync(Exception? exception)
         {
             var groupName = Context.Items["group"]?.ToString() ?? "";
-
-            Console.WriteLine(groupName);
 
             if (!string.IsNullOrEmpty(groupName))
                 // not necessary to call remove from group

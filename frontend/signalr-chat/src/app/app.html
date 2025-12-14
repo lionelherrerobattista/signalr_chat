@@ -1,4 +1,14 @@
 <h1>SignalR chat</h1>
+@if(this.chatApi.user().username === "") {
+<h2>Create your username:</h2>
+<form [formGroup]="usernameForm" (ngSubmit)="onSubmitUsername()">
+  <label for="username">Username:</label>
+  <input type="text" name="username" id="username" formControlName="username" />
+  <button type="submit">Create User</button>
+</form>
+} @else {
+
+<h2>Chat:</h2>
 <!-- TODO: alternate messages sent with messages received -->
 @for(message of this.chatApi.messages(); track $index) {
 <p>{{ message.username + ': ' + message.text }}</p>
@@ -8,3 +18,4 @@
   <input type="text" name="message" id="message" formControlName="message" />
   <button type="submit" [disabled]="!messageForm.valid">Send</button>
 </form>
+}
