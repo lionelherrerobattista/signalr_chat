@@ -1,4 +1,4 @@
-import { Injectable, signal, WritableSignal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { HubConnection, HubConnectionBuilder, HubConnectionState } from '@microsoft/signalr';
 import { catchError, defer, from, map, of, throwError } from 'rxjs';
 
@@ -18,13 +18,28 @@ export class ChatApi {
 
   constructor() {
     // initialize connection and handlers
-    this.connection = new HubConnectionBuilder().withUrl(this.baseUrl + '/hub').build();
+    this.connection = new HubConnectionBuilder()
+      .withUrl(this.baseUrl + '/hub')
+      .withAutomaticReconnect()
+      .build();
 
     this.createHandlers();
   }
 
   private createHandlers() {
-    // define handlers
+    // handle to reconnect with the server on disconnect
+    this.connection.onreconnecting((err) => {
+      console.warn(`Connection lost due to error "${err}". Reconnecting...`);
+    });
+
+    this.connection.onclose((err) => {
+      console.error(
+        `Connection closed due to error "${err}". Try refreshing this page to restart the connection.`
+      );
+    });
+
+    // define message handlers
+
     this.connection.on('messageReceived', (username: string, message: string) => {
       console.log(`${username}: ${message}`);
       // add message to array
@@ -37,6 +52,8 @@ export class ChatApi {
    * @returns true if the hub is connected
    */
   startConnection() {
+    // TODO: attemp manual reconnection ?
+
     // return observable, lazy
     return defer(() => {
       // check if already connected
