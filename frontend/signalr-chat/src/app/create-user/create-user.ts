@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ChatApi } from '../chat/chat-api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-user',
@@ -9,8 +10,8 @@ import { ChatApi } from '../chat/chat-api';
   styleUrl: './create-user.scss',
 })
 export class CreateUser {
-  chatApi = inject(ChatApi);
-
+  private chatApi = inject(ChatApi);
+  private router = inject(Router);
   usernameForm = new FormGroup({
     username: new FormControl(''),
   });
@@ -18,7 +19,12 @@ export class CreateUser {
   onSubmitUsername() {
     const { username } = this.usernameForm.value;
 
-    if (username) this.chatApi.createUser(username);
+    if (username) {
+      this.chatApi.createUser(username);
+      this.usernameForm.reset();
+      this.router.navigate(['/chat']);
+      return;
+    }
 
     this.usernameForm.reset();
   }

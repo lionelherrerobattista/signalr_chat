@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ChatApi } from '../chat/chat-api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chat-page',
@@ -8,11 +9,17 @@ import { ChatApi } from '../chat/chat-api';
   templateUrl: './chat-page.html',
   styleUrl: './chat-page.scss',
 })
-export class ChatPage {
+export class ChatPage implements OnInit {
   chatApi = inject(ChatApi);
+  private router = inject(Router);
   messageForm = new FormGroup({
     message: new FormControl(''),
   });
+
+  ngOnInit(): void {
+    console.log(this.chatApi.user().username);
+    if (this.chatApi.user().username === '') this.router.navigate(['/']);
+  }
 
   sendMessage(message: string) {
     this.chatApi.sendMessage(message);

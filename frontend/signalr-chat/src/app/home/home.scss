@@ -1,7 +1,10 @@
-.main-page {
+:host {
   height: 100vh;
   display: grid;
-  grid-template-rows: min-content min-content 1fr;
+  grid-template-rows: min-content min-content min-content;
+  align-items: center;
+  justify-items: center;
+  gap: 5rem;
   padding: 1rem;
   background-color: var(--gray-50);
 }
@@ -15,5 +18,18 @@
 
 .main-page__text {
   padding-inline: 2rem;
+  font-size: var(--font-size-lg);
+}
+
+.button {
+  min-height: 4rem;
+  min-width: 15rem;
+
+  border: none;
+  border-radius: 5px;
+  background-color: var(--blue-600);
+  color: var(--gray-50);
+  //box-shadow: var(--shadow-lg);
+
   font-size: var(--font-size-lg);
 }

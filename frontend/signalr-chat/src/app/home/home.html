@@ -1,13 +1,7 @@
-<div class="main-page">
-  <div class="main-page__title">
-    <h1>SignalR chat</h1>
-  </div>
-  <div class="main-page__text">
-    <p>Create a user and start chatting with your friends. This app is powered by SignalR.</p>
-  </div>
-  @if(this.chatApi.user().username === "") {
-  <app-create-user></app-create-user>
-  } @else {
-  <app-chat-page></app-chat-page>
-  }
+<div class="main-page__title">
+  <h1>SignalR chat</h1>
 </div>
+<div class="main-page__text">
+  <p>Create a user and start chatting with your friends. This app is powered by SignalR.</p>
+</div>
+<button class="button" (click)="navigateToUserCreation()">Create user</button>

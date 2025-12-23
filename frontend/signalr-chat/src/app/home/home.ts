@@ -1,22 +1,25 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { CreateUser } from '../create-user/create-user';
-import { ChatPage } from '../chat-page/chat-page';
+import { Component, inject, OnInit } from '@angular/core';
 import { ChatApi } from '../chat/chat-api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [CreateUser, ChatPage],
+  imports: [],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
 export class Home implements OnInit {
-  text = signal('');
-  chatApi = inject(ChatApi);
+  private chatApi = inject(ChatApi);
+  private router = inject(Router);
 
   constructor() {}
 
   ngOnInit(): void {
     // start connection and add user to group
     this.chatApi.startConnection().subscribe(() => this.chatApi.addUserToGroup());
+  }
+
+  navigateToUserCreation() {
+    this.router.navigate(['/create-user']);
   }
 }
