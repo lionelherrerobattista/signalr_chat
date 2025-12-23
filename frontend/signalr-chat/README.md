@@ -5,6 +5,7 @@
 
 - UI
   - [x] Three pages/components: Landing -> Username -> Chat.
+  - [ ] Create route guards when username is not defined?
   - [] Add animation to page change.
   - [] home
     - [] Add hero elements.
@@ -19,3 +20,9 @@
     - [x] Redirect to home if no username.
     - [] Add home button.
     - [] Change username button ?
+    - [ ] test long message
+
+
+## Bugs
+
+- [ ] If users use the same username, both messages appear as outgoing.

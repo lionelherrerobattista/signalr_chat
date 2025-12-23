@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { ChatApi } from '../chat/chat-api';
+import { ChatApi, Message } from '../chat/chat-api';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,6 +19,9 @@ export class ChatPage implements OnInit {
   ngOnInit(): void {
     console.log(this.chatApi.user().username);
     if (this.chatApi.user().username === '') this.router.navigate(['/']);
+
+    // start connection and add user to group
+    this.chatApi.startConnection().subscribe(() => this.chatApi.addUserToGroup());
   }
 
   sendMessage(message: string) {
@@ -32,5 +35,11 @@ export class ChatPage implements OnInit {
     if (message) this.sendMessage(message);
 
     this.messageForm.reset();
+  }
+
+  checkMessageType(message: Message) {
+    return message.username === this.chatApi.user().username
+      ? 'chat-window__message chat-window__message--outgoing'
+      : 'chat-window__message chat-window__message--incoming';
   }
 }

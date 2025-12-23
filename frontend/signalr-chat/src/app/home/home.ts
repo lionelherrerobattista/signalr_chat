@@ -14,10 +14,7 @@ export class Home implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    // start connection and add user to group
-    this.chatApi.startConnection().subscribe(() => this.chatApi.addUserToGroup());
-  }
+  ngOnInit(): void {}
 
   navigateToUserCreation() {
     this.router.navigate(['/create-user']);

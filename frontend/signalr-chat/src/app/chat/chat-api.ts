@@ -106,7 +106,10 @@ export class ChatApi {
       return;
     }
 
-    this.connection.invoke('AddToGroup', this.groupName).then((message) => console.log(message));
+    this.connection
+      .invoke('AddToGroup', this.groupName)
+      .then((message) => console.log(message))
+      .catch((err) => console.error(err));
   }
 
   /**
