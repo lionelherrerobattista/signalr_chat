@@ -1,0 +1,13 @@
+<form class="user-form" [formGroup]="usernameForm" (ngSubmit)="onSubmitUsername()">
+  <div class="user-form__input">
+    <label for="username">This will be your username:</label>
+    <input
+      type="text"
+      name="username"
+      id="username"
+      formControlName="username"
+      autocomplete="off"
+    />
+  </div>
+  <button class="button" type="submit">Create User</button>
+</form>

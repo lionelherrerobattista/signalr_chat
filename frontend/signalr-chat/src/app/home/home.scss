@@ -1,0 +1,19 @@
+.main-page {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: min-content min-content 1fr;
+  padding: 1rem;
+  background-color: var(--gray-50);
+}
+
+.main-page__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 20vh;
+}
+
+.main-page__text {
+  padding-inline: 2rem;
+  font-size: var(--font-size-lg);
+}
