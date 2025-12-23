@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+@use './styles/index.scss';
+
+body {
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-normal);
+  box-sizing: border-box;
+}
