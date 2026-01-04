@@ -61,6 +61,7 @@ export class ChatApi {
 
     this.connection.on('messageReceived', (username: string, message: string) => {
       console.log(`${username}: ${message}`);
+      // TODO: create message object
       // add message to array
       this.messages.update((messages) => [...messages, { username, text: message }]);
     });

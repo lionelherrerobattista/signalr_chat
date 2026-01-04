@@ -1,4 +1,7 @@
-<h2 class="chat-title">Chat</h2>
+<div class="chat-header">
+  <h2 class="chat-title">Chat</h2>
+  <a [routerLink]="'/'" class="button--back">Home</a>
+</div>
 <div class="chat-window">
   @for(message of this.chatApi.messages(); track $index) {
   <div [class]="checkMessageType(message)">

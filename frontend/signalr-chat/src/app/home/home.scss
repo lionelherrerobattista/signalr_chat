@@ -1,10 +1,10 @@
 :host {
   height: 100vh;
   display: grid;
-  grid-template-rows: min-content min-content min-content;
+  grid-template-rows: min-content min-content 1fr 1fr;
   align-items: center;
   justify-items: center;
-  gap: 5rem;
+  gap: 3rem;
   padding: 1rem;
   background-color: var(--gray-50);
 }
@@ -13,7 +13,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 20vh;
+  min-height: 16vh;
 }
 
 .main-page__text {
@@ -32,4 +32,15 @@
   //box-shadow: var(--shadow-lg);
 
   font-size: var(--font-size-lg);
+}
+
+.main-page__hero-image {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+
+  .chat-image {
+    width: 50%;
+    height: auto;
+  }
 }

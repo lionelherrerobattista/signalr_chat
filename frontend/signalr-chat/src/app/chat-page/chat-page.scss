@@ -4,14 +4,55 @@
 
   height: 100vh;
   padding: 1.5rem;
-  gap: 1rem;
+  gap: 2rem;
 }
 
-.chat-title {
+.chat-header {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 3rem;
+  position: relative;
+
+  .chat-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .button--back {
+    position: absolute;
+    top: 0.2rem;
+    right: 0rem;
+    padding: 0.5rem;
+
+    border: none;
+    border-radius: 5px;
+    background-color: var(--blue-600);
+    color: var(--gray-50);
+    font-size: var(--font-size-lg);
+    text-decoration: none;
+
+    &:link,
+    &:visited,
+    &:hover,
+    &:active,
+    &:focus {
+      color: var(--gray-50);
+      text-decoration: none;
+    }
+
+    // TODO: add effects for bigger screens
+
+    // &:hover {
+    // }
+
+    // &:active {
+    // }
+
+    // &:focus {
+    // }
+  }
 }
 
 .chat-window {
@@ -25,6 +66,8 @@
 
   padding: 0.5rem 1rem;
   border-radius: 15px;
+  max-width: 80%;
+  overflow-wrap: anywhere; // allow long words to wrap
 
   &--incoming {
     align-self: flex-start;
