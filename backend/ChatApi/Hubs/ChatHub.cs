@@ -26,8 +26,11 @@ namespace ChatApi.Hubs
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
 
-            // store group identifier
-            Context.Items.Add("group", groupName);
+            // TODO: store chat rooms in db and retrieve?
+
+            // store group identifier, if not created
+            if (Context.Items["group"] == null)
+                Context.Items.Add("group", groupName); // persist the name in memory, if no db added
 
             await Clients.Group(groupName)
                 .SendAsync("Send", $"{Context.ConnectionId} has joined the group {groupName}.");
