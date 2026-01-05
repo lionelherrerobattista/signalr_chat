@@ -12,8 +12,9 @@ import { Router, RouterLink } from '@angular/router';
 export class CreateUser {
   private chatApi = inject(ChatApi);
   private router = inject(Router);
+  user = this.chatApi.user;
   usernameForm = new FormGroup({
-    username: new FormControl(''),
+    username: new FormControl(this.user().username || ''),
   });
 
   onSubmitUsername() {

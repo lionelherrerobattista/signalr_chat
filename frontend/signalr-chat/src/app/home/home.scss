@@ -7,6 +7,8 @@
   gap: 3rem;
   padding: 1rem;
   background-color: var(--gray-50);
+
+  contain: layout paint;
 }
 
 .main-page__title {
@@ -44,3 +46,29 @@
     height: auto;
   }
 }
+
+// ::view-transition-old(root) {
+//   animation: slide-out 300ms ease;
+// }
+
+// ::view-transition-new(root) {
+//   animation: slide-in 300ms ease;
+// }
+
+// @keyframes slide-in {
+//   from {
+//     transform: translateX(100%);
+//   }
+//   to {
+//     transform: translateX(0);
+//   }
+// }
+
+// @keyframes slide-out {
+//   from {
+//     transform: translateX(0);
+//   }
+//   to {
+//     transform: translateX(-30%);
+//   }
+// }

@@ -23,7 +23,7 @@
     />
   </div>
   <button [class]="!usernameForm.valid ? 'button button--disabled' : 'button'" type="submit">
-    Create User
+    {{`${user().username ? "Edit" : "Create"} User`}}
   </button>
   <a [routerLink]="'/'" class="btn-cancel">Cancel</a>
 </form>

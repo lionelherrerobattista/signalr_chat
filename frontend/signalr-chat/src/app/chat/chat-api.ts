@@ -18,7 +18,6 @@ export class ChatApi {
     username: '',
     connectionId: '',
   });
-  // TODO: save messages sent and received
   messages = signal<Message[]>([]); // convert to signal
 
   constructor() {

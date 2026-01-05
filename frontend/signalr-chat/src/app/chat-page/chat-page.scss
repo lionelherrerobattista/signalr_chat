@@ -59,6 +59,9 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding: 0 0.5rem;
 }
 
 .chat-window__message {

@@ -21,7 +21,9 @@ export class ChatPage implements OnInit {
     if (this.chatApi.user().username === '') this.router.navigate(['/']);
 
     // start connection and add user to group
-    this.chatApi.startConnection().subscribe(() => this.chatApi.addUserToGroup());
+    this.chatApi.startConnection().subscribe(() => {
+      this.chatApi.addUserToGroup();
+    });
   }
 
   sendMessage(message: string) {
