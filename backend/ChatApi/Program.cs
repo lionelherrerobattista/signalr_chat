@@ -5,13 +5,14 @@ using Microsoft.AspNetCore.SignalR;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddSingleton<SignalRRateLimiter>();
+builder.Services.AddSingleton<SignalRRateLimiter>(); // singleton, persist user rate
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddSignalR(options =>
 {
+    // global filters
     options.AddFilter<RateLimitHubFilter>();
 });
 

@@ -25,6 +25,7 @@
   - [ ] Change username button ? Profile page?
   - [x] test long message.
   - [ ] Guard before leaving the page?
+  - [ ] Username in bold
 
 
 ## Bugs
