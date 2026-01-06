@@ -1,0 +1,74 @@
+:host {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: min-content min-content 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  gap: 3rem;
+  padding: 1rem;
+  background-color: var(--gray-50);
+
+  contain: layout paint;
+}
+
+.main-page__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 16vh;
+}
+
+.main-page__text {
+  padding-inline: 2rem;
+  font-size: var(--font-size-lg);
+}
+
+.button {
+  min-height: 4rem;
+  min-width: 15rem;
+
+  border: none;
+  border-radius: 5px;
+  background-color: var(--blue-600);
+  color: var(--gray-50);
+  //box-shadow: var(--shadow-lg);
+
+  font-size: var(--font-size-lg);
+}
+
+.main-page__hero-image {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+
+  .chat-image {
+    width: 50%;
+    height: auto;
+  }
+}
+
+// ::view-transition-old(root) {
+//   animation: slide-out 300ms ease;
+// }
+
+// ::view-transition-new(root) {
+//   animation: slide-in 300ms ease;
+// }
+
+// @keyframes slide-in {
+//   from {
+//     transform: translateX(100%);
+//   }
+//   to {
+//     transform: translateX(0);
+//   }
+// }
+
+// @keyframes slide-out {
+//   from {
+//     transform: translateX(0);
+//   }
+//   to {
+//     transform: translateX(-30%);
+//   }
+// }

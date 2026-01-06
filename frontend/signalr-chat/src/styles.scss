@@ -1,1 +1,40 @@
-/* You can add global styles to this file, and also import other style files */
+@use './styles/index.scss';
+
+body {
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-normal);
+  background-color: var(--gray-50);
+  box-sizing: border-box;
+}
+
+::view-transition-old(root) {
+  animation: page-slide-out 300ms ease-in;
+}
+
+@keyframes page-slide-out {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(-100%);
+    opacity: 1;
+  }
+}
+
+::view-transition-new(root) {
+  animation: page-slide-in 300ms ease-out;
+}
+
+@keyframes page-slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

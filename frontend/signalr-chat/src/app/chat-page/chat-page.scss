@@ -1,0 +1,134 @@
+:host {
+  display: grid;
+  grid-template-rows: min-content 1fr min-content;
+
+  height: 100vh;
+  padding: 1.5rem;
+  gap: 2rem;
+}
+
+.chat-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 3rem;
+  position: relative;
+
+  .chat-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .button--back {
+    position: absolute;
+    top: 0.2rem;
+    right: 0rem;
+    padding: 0.5rem;
+
+    border: none;
+    border-radius: 5px;
+    background-color: var(--blue-600);
+    color: var(--gray-50);
+    font-size: var(--font-size-lg);
+    text-decoration: none;
+
+    &:link,
+    &:visited,
+    &:hover,
+    &:active,
+    &:focus {
+      color: var(--gray-50);
+      text-decoration: none;
+    }
+
+    // TODO: add effects for bigger screens
+
+    // &:hover {
+    // }
+
+    // &:active {
+    // }
+
+    // &:focus {
+    // }
+  }
+}
+
+.chat-window {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding: 0 0.5rem;
+}
+
+.chat-window__message {
+  position: relative;
+
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  max-width: 80%;
+  overflow-wrap: anywhere; // allow long words to wrap
+
+  &--incoming {
+    align-self: flex-start;
+    background-color: var(--gray-300);
+    color: var(--color-black);
+
+    &::after {
+      // bubble tip
+      content: '';
+      position: absolute;
+      left: -4px;
+      width: 12px;
+      height: 12px;
+      rotate: 45deg;
+      border-radius: 0 0 12px 0;
+      background-color: var(--gray-300);
+    }
+  }
+
+  &--outgoing {
+    align-self: flex-end;
+    background-color: var(--blue-600);
+    color: var(--gray-50);
+
+    &::after {
+      // bubble tip
+      content: '';
+      position: absolute;
+      right: -4px;
+      width: 12px;
+      height: 12px;
+      rotate: 45deg;
+      border-radius: 0 0 12px 0;
+      background-color: var(--blue-600);
+    }
+  }
+}
+
+.chat-input {
+  display: flex;
+  min-height: 2.5rem;
+  gap: 1rem;
+
+  input {
+    flex: 1;
+    border: none;
+    border-radius: 20px;
+    box-shadow: var(--shadow-input);
+    padding: 0.5rem 1rem;
+  }
+
+  button {
+    min-width: 5rem;
+
+    border: none;
+    border-radius: 5px;
+    background-color: var(--blue-600);
+    color: var(--gray-50);
+    font-size: var(--font-size-lg);
+  }
+}

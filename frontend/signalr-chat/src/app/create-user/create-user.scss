@@ -1,0 +1,98 @@
+:host {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.person-icon {
+  fill: var(--blue-600);
+  height: auto;
+  width: 20vw;
+}
+
+.back-btn-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 2rem 2rem;
+}
+
+.user-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.user-form__input {
+  display: flex;
+  flex-direction: column;
+
+  input {
+    min-height: 2.5rem;
+    min-width: 15rem;
+    border-radius: 5px;
+    border-width: 1px;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+
+    font-size: var(--font-size-md);
+  }
+}
+
+.button {
+  min-height: 4rem;
+  min-width: 15rem;
+
+  border: none;
+  border-radius: 5px;
+  background-color: var(--blue-600);
+  color: var(--gray-50);
+  //box-shadow: var(--shadow-lg);
+
+  font-size: var(--font-size-lg);
+
+  &--disabled {
+    background-color: var(--gray-500);
+    color: var(--gray-50);
+  }
+}
+
+.btn-cancel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 4rem;
+  min-width: 15rem;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--gray-200);
+  color: var(--blue-700);
+  //box-shadow: var(--shadow-lg);
+
+  font-size: var(--font-size-lg);
+
+  &:link,
+  &:visited,
+  &:hover,
+  &:active,
+  &:focus {
+    color: var(--blue-700);
+    text-decoration: none;
+  }
+
+  // TODO: add effects for bigger screens
+
+  // &:hover {
+  // }
+
+  // &:active {
+  // }
+
+  // &:focus {
+  // }
+}
