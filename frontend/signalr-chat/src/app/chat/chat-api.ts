@@ -123,6 +123,8 @@ export class ChatApi {
       return;
     }
 
+    // TODO: Sanitize input text?
+
     // don't care about response for now
     this.connection.send('NewMessage', this.user().username, message, this.groupName);
   }

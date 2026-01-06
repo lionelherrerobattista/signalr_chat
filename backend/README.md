@@ -5,6 +5,11 @@
 
 - [ ] Add endpoint to generate chat-rooms.
 - [ ] Store chat-rooms in a database.
+- [x] Add rate limiter
+- [ ] Add throttling.
+- [ ] Add message validations.
+- [ ] Add secure headers.
+- [ ] Anonymous tokens?
 
 ## Bugs
 
