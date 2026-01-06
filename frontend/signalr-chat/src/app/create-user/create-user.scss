@@ -1,3 +1,5 @@
+@use '../../styles/scss/mixins' as m;
+
 :host {
   height: 100vh;
   display: flex;
@@ -30,6 +32,7 @@
 .user-form__input {
   display: flex;
   flex-direction: column;
+  height: 6rem;
 
   input {
     min-height: 2.5rem;
@@ -40,7 +43,20 @@
     padding: 0.5rem;
 
     font-size: var(--font-size-md);
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--blue-500);
+    }
   }
+}
+
+.hint {
+  font-size: var(--font-size-sm);
+  color: var(--gray-500);
 }
 
 .button {
@@ -51,13 +67,35 @@
   border-radius: 5px;
   background-color: var(--blue-600);
   color: var(--gray-50);
-  //box-shadow: var(--shadow-lg);
-
   font-size: var(--font-size-lg);
 
-  &--disabled {
+  &:focus-visible {
+    outline: 2px solid var(--blue-500);
+  }
+
+  &--active {
+    @include m.respond(lg) {
+      &:hover {
+        cursor: pointer;
+        transform: translateY(-0.1rem);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+
+  &:disabled {
     background-color: var(--gray-500);
     color: var(--gray-50);
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    @include m.respond(lg) {
+      &:hover {
+        cursor: not-allowed;
+      }
+    }
   }
 }
 
@@ -72,9 +110,11 @@
   border-radius: 5px;
   background-color: var(--gray-200);
   color: var(--blue-700);
-  //box-shadow: var(--shadow-lg);
-
   font-size: var(--font-size-lg);
+
+  &:focus-visible {
+    outline: 2px solid var(--blue-500);
+  }
 
   &:link,
   &:visited,

@@ -1,0 +1,15 @@
+@use 'sass:map';
+@use './breakpoints' as b;
+
+// Media query mixins - mobile first
+@mixin respond($size) {
+  $value: map.get(b.$breakpoints, $size);
+
+  @if $value == null {
+    @error "Unknown breakpoint: #{size}";
+  }
+
+  @media (min-width: $value) {
+    @content;
+  }
+}

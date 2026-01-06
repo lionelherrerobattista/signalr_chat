@@ -1,3 +1,5 @@
+@use '../../styles/scss/mixins' as m;
+
 :host {
   height: 100vh;
   display: grid;
@@ -31,9 +33,15 @@
   border-radius: 5px;
   background-color: var(--blue-600);
   color: var(--gray-50);
-  //box-shadow: var(--shadow-lg);
-
   font-size: var(--font-size-lg);
+
+  @include m.respond(lg) {
+    &:hover {
+      cursor: pointer;
+      transform: translateY(-0.1rem);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+  }
 }
 
 .main-page__hero-image {
@@ -46,29 +54,3 @@
     height: auto;
   }
 }
-
-// ::view-transition-old(root) {
-//   animation: slide-out 300ms ease;
-// }
-
-// ::view-transition-new(root) {
-//   animation: slide-in 300ms ease;
-// }
-
-// @keyframes slide-in {
-//   from {
-//     transform: translateX(100%);
-//   }
-//   to {
-//     transform: translateX(0);
-//   }
-// }
-
-// @keyframes slide-out {
-//   from {
-//     transform: translateX(0);
-//   }
-//   to {
-//     transform: translateX(-30%);
-//   }
-// }

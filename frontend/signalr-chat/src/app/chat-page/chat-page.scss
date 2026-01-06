@@ -1,3 +1,5 @@
+@use '../../styles/scss/mixins' as m;
+
 :host {
   display: grid;
   grid-template-rows: min-content 1fr min-content;
@@ -5,6 +7,13 @@
   height: 100vh;
   padding: 1.5rem;
   gap: 2rem;
+
+  @include m.respond(lg) {
+    padding: 1.5rem 10rem;
+  }
+  @include m.respond(xl) {
+    padding: 1.5rem 15rem;
+  }
 }
 
 .chat-header {
@@ -109,6 +118,10 @@
   }
 }
 
+.message-header {
+  font-weight: var(--font-weight-bold);
+}
+
 .chat-input {
   display: flex;
   min-height: 2.5rem;
@@ -130,5 +143,11 @@
     background-color: var(--blue-600);
     color: var(--gray-50);
     font-size: var(--font-size-lg);
+
+    @include m.respond(lg) {
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 }

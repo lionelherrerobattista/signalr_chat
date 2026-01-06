@@ -5,7 +5,7 @@
 <div class="chat-window">
   @for(message of this.chatApi.messages(); track $index) {
   <div [class]="checkMessageType(message)">
-    <p>{{ message.username + ':' }}</p>
+    <p class="message-header">{{ message.username }}</p>
     <p>{{ message.text }}</p>
   </div>
   }
