@@ -47,8 +47,6 @@ export class ChatApi {
 
     // define message handlers
     this.connection.on('userConnected', (connectionId) => {
-      console.log(connectionId);
-
       // add message to array
       this.user.update((value) => {
         return {
@@ -59,7 +57,6 @@ export class ChatApi {
     });
 
     this.connection.on('messageReceived', (username: string, message: string) => {
-      console.log(`${username}: ${message}`);
       // TODO: create message object
       // add message to array
       this.messages.update((messages) => [...messages, { username, text: message }]);
@@ -108,7 +105,7 @@ export class ChatApi {
 
     this.connection
       .invoke('AddToGroup', this.groupName)
-      .then((message) => console.log(message))
+      .then((message) => {})
       .catch((err) => console.error(err));
   }
 
