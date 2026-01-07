@@ -21,9 +21,12 @@
       autocomplete="off"
       required
     />
+    @if(usernameForm.invalid && usernameForm.touched) {
+    <p class="hint">Please complete all required fields</p>
+    }
   </div>
-  <button [class]="!usernameForm.valid ? 'button button--disabled' : 'button'" type="submit">
+  <button class="btn btn--md" type="submit" [disabled]="usernameForm.invalid">
     {{`${user().username ? "Edit" : "Create"} User`}}
   </button>
-  <a [routerLink]="'/'" class="btn-cancel">Cancel</a>
+  <a [routerLink]="'/'" class="btn btn--md btn--cancel">Cancel</a>
 </form>

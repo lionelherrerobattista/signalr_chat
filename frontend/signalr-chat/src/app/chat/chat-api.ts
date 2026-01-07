@@ -3,8 +3,9 @@ import { HubConnection, HubConnectionBuilder, HubConnectionState } from '@micros
 import { catchError, defer, from, map, of, throwError } from 'rxjs';
 
 export interface Message {
-  text: string;
   username: string;
+  connectionId: string;
+  text: string;
 }
 
 @Injectable({
@@ -47,8 +48,6 @@ export class ChatApi {
 
     // define message handlers
     this.connection.on('userConnected', (connectionId) => {
-      console.log(connectionId);
-
       // add message to array
       this.user.update((value) => {
         return {
@@ -58,12 +57,17 @@ export class ChatApi {
       });
     });
 
-    this.connection.on('messageReceived', (username: string, message: string) => {
-      console.log(`${username}: ${message}`);
-      // TODO: create message object
-      // add message to array
-      this.messages.update((messages) => [...messages, { username, text: message }]);
-    });
+    this.connection.on(
+      'messageReceived',
+      (username: string, connectionId: string, message: string) => {
+        // TODO: create message object
+        // add message to array
+        this.messages.update((messages) => [
+          ...messages,
+          { username, connectionId, text: message },
+        ]);
+      }
+    );
   }
 
   /**
@@ -92,11 +96,24 @@ export class ChatApi {
   }
 
   createUser(username: string) {
+    const oldUsername = this.user().username;
+
     this.user.update((value) => {
       return {
         ...value,
         username,
       };
+    });
+
+    this.messages.update((messages) => {
+      return messages.map((message) => {
+        if (message.username !== oldUsername) return message;
+
+        return {
+          ...message,
+          username,
+        };
+      });
     });
   }
 
@@ -108,7 +125,7 @@ export class ChatApi {
 
     this.connection
       .invoke('AddToGroup', this.groupName)
-      .then((message) => console.log(message))
+      .then((message) => {})
       .catch((err) => console.error(err));
   }
 
@@ -126,6 +143,12 @@ export class ChatApi {
     // TODO: Sanitize input text?
 
     // don't care about response for now
-    this.connection.send('NewMessage', this.user().username, message, this.groupName);
+    this.connection.send(
+      'NewMessage',
+      this.user().username,
+      this.user().connectionId,
+      message,
+      this.groupName
+    );
   }
 }

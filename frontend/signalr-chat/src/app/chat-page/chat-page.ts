@@ -17,7 +17,6 @@ export class ChatPage implements OnInit {
   });
 
   ngOnInit(): void {
-    console.log(this.chatApi.user().username);
     if (this.chatApi.user().username === '') this.router.navigate(['/']);
 
     // start connection and add user to group

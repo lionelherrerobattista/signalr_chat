@@ -1,7 +1,9 @@
+@use '../../styles/scss/mixins' as m;
+
 :host {
-  height: 100vh;
+  min-height: 100vh;
   display: grid;
-  grid-template-rows: min-content min-content 1fr 1fr;
+  grid-template-rows: min-content min-content min-content 1fr;
   align-items: center;
   justify-items: center;
   gap: 3rem;
@@ -23,52 +25,13 @@
   font-size: var(--font-size-lg);
 }
 
-.button {
-  min-height: 4rem;
-  min-width: 15rem;
-
-  border: none;
-  border-radius: 5px;
-  background-color: var(--blue-600);
-  color: var(--gray-50);
-  //box-shadow: var(--shadow-lg);
-
-  font-size: var(--font-size-lg);
-}
-
 .main-page__hero-image {
   display: flex;
   justify-content: center;
   margin-top: 3rem;
 
   .chat-image {
-    width: 50%;
+    max-width: 50%;
     height: auto;
   }
 }
-
-// ::view-transition-old(root) {
-//   animation: slide-out 300ms ease;
-// }
-
-// ::view-transition-new(root) {
-//   animation: slide-in 300ms ease;
-// }
-
-// @keyframes slide-in {
-//   from {
-//     transform: translateX(100%);
-//   }
-//   to {
-//     transform: translateX(0);
-//   }
-// }
-
-// @keyframes slide-out {
-//   from {
-//     transform: translateX(0);
-//   }
-//   to {
-//     transform: translateX(-30%);
-//   }
-// }

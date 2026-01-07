@@ -10,6 +10,7 @@
 - [ ] Add message validations.
 - [ ] Add secure headers.
 - [ ] Anonymous tokens?
+- [ ] Receive user object in NewMessage?
 
 ## Bugs
 

@@ -10,8 +10,8 @@ namespace ChatApi.SignalR.RateLimiting
         {
             _limiter = PartitionedRateLimiter.Create<string, string>(key =>
                 RateLimitPartition.GetTokenBucketLimiter(
-                    key,
-                    _ => new TokenBucketRateLimiterOptions
+                    partitionKey: key,
+                    factory: _ => new TokenBucketRateLimiterOptions
                     {
                         TokenLimit = 10,
                         TokensPerPeriod = 10,

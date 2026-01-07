@@ -1,0 +1,20 @@
+.btn--sm {
+  min-width: 5rem;
+}
+
+.btn--md {
+  min-height: 4rem;
+  min-width: 15rem;
+}
+
+.btn--cancel {
+  background-color: var(--gray-200);
+  color: var(--blue-700);
+}
+
+.btn--home {
+  position: absolute;
+  top: 0.2rem;
+  right: 0rem;
+  padding: 0.5rem;
+}

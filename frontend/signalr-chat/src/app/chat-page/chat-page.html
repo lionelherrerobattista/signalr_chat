@@ -1,12 +1,11 @@
 <div class="chat-header">
   <h2 class="chat-title">Chat</h2>
-  <a [routerLink]="'/'" class="button--back">Home</a>
+  <a [routerLink]="'/'" class="btn btn--sm btn--home">Home</a>
 </div>
 <div class="chat-window">
   @for(message of this.chatApi.messages(); track $index) {
   <div [class]="checkMessageType(message)">
-    <!-- <p>{{ message.username + ': ' + message.text }}</p> -->
-    <p>{{ message.username + ':' }}</p>
+    <p class="message-header">{{ message.username }}</p>
     <p>{{ message.text }}</p>
   </div>
   }
@@ -19,5 +18,5 @@
     formControlName="message"
     placeholder="Write a message"
   />
-  <button type="submit" [disabled]="!messageForm.valid">Send</button>
+  <button class="btn btn--sm" type="submit" [disabled]="!messageForm.valid">Send</button>
 </form>

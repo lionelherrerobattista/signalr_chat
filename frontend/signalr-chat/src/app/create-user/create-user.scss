@@ -1,3 +1,5 @@
+@use '../../styles/scss/mixins' as m;
+
 :host {
   height: 100vh;
   display: flex;
@@ -13,12 +15,6 @@
   width: 20vw;
 }
 
-.back-btn-container {
-  display: flex;
-  justify-content: flex-end;
-  padding: 2rem 2rem;
-}
-
 .user-form {
   display: flex;
   flex-direction: column;
@@ -30,6 +26,7 @@
 .user-form__input {
   display: flex;
   flex-direction: column;
+  height: 6rem;
 
   input {
     min-height: 2.5rem;
@@ -40,59 +37,18 @@
     padding: 0.5rem;
 
     font-size: var(--font-size-md);
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--blue-500);
+    }
   }
 }
 
-.button {
-  min-height: 4rem;
-  min-width: 15rem;
-
-  border: none;
-  border-radius: 5px;
-  background-color: var(--blue-600);
-  color: var(--gray-50);
-  //box-shadow: var(--shadow-lg);
-
-  font-size: var(--font-size-lg);
-
-  &--disabled {
-    background-color: var(--gray-500);
-    color: var(--gray-50);
-  }
-}
-
-.btn-cancel {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  min-height: 4rem;
-  min-width: 15rem;
-  border: none;
-  border-radius: 5px;
-  background-color: var(--gray-200);
-  color: var(--blue-700);
-  //box-shadow: var(--shadow-lg);
-
-  font-size: var(--font-size-lg);
-
-  &:link,
-  &:visited,
-  &:hover,
-  &:active,
-  &:focus {
-    color: var(--blue-700);
-    text-decoration: none;
-  }
-
-  // TODO: add effects for bigger screens
-
-  // &:hover {
-  // }
-
-  // &:active {
-  // }
-
-  // &:focus {
-  // }
+.hint {
+  font-size: var(--font-size-sm);
+  color: var(--gray-500);
 }
