@@ -47,12 +47,12 @@ namespace ChatApi.Hubs
         }
 
         // broadcast message to all clients in the group
-        public async Task NewMessage(string username, string message, string groupName)
+        public async Task NewMessage(string username, string connectionId, string message, string groupName)
         {
             // TODO: Sanitize input?
 
             // send message, don't wait for client to respond
-            await Clients.Group(groupName).SendAsync("messageReceived", username, message);
+            await Clients.Group(groupName).SendAsync("messageReceived", username, connectionId, message);
         }
 
     }

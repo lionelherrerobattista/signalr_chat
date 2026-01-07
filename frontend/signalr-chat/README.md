@@ -28,9 +28,12 @@
   - [x] Username in bold
 - [ ] Refactor
   - [ ] Improve scss classes. Avoid code repetition.
+  - [ ] Store the mapping between connectionId and user in a separate data structure?
+  - [ ] Send user object to backend?
+
 
 
 ## Bugs
 
 - [x] If users use the same username, both messages appear as outgoing.
-- [ ] If user changes name, the message appears as outgoing.
+- [x] If user changes name, the message appears as outgoing.
