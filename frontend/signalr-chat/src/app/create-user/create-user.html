@@ -25,8 +25,8 @@
     <p class="hint">Please complete all required fields</p>
     }
   </div>
-  <button type="submit" [disabled]="usernameForm.invalid" class="button">
+  <button class="btn btn--md" type="submit" [disabled]="usernameForm.invalid">
     {{`${user().username ? "Edit" : "Create"} User`}}
   </button>
-  <a [routerLink]="'/'" class="btn-cancel">Cancel</a>
+  <a [routerLink]="'/'" class="btn btn--md btn--cancel">Cancel</a>
 </form>

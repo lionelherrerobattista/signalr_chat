@@ -15,12 +15,6 @@
   width: 20vw;
 }
 
-.back-btn-container {
-  display: flex;
-  justify-content: flex-end;
-  padding: 2rem 2rem;
-}
-
 .user-form {
   display: flex;
   flex-direction: column;
@@ -57,82 +51,4 @@
 .hint {
   font-size: var(--font-size-sm);
   color: var(--gray-500);
-}
-
-.button {
-  min-height: 4rem;
-  min-width: 15rem;
-
-  border: none;
-  border-radius: 5px;
-  background-color: var(--blue-600);
-  color: var(--gray-50);
-  font-size: var(--font-size-lg);
-
-  &:focus-visible {
-    outline: 2px solid var(--blue-500);
-  }
-
-  &--active {
-    @include m.respond(lg) {
-      &:hover {
-        cursor: pointer;
-        transform: translateY(-0.1rem);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      }
-    }
-  }
-
-  &:disabled {
-    background-color: var(--gray-500);
-    color: var(--gray-50);
-
-    &:focus-visible {
-      outline: none;
-    }
-
-    @include m.respond(lg) {
-      &:hover {
-        cursor: not-allowed;
-      }
-    }
-  }
-}
-
-.btn-cancel {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  min-height: 4rem;
-  min-width: 15rem;
-  border: none;
-  border-radius: 5px;
-  background-color: var(--gray-200);
-  color: var(--blue-700);
-  font-size: var(--font-size-lg);
-
-  &:focus-visible {
-    outline: 2px solid var(--blue-500);
-  }
-
-  &:link,
-  &:visited,
-  &:hover,
-  &:active,
-  &:focus {
-    color: var(--blue-700);
-    text-decoration: none;
-  }
-
-  // TODO: add effects for bigger screens
-
-  // &:hover {
-  // }
-
-  // &:active {
-  // }
-
-  // &:focus {
-  // }
 }

@@ -1,0 +1,32 @@
+@use '../scss/mixins' as m;
+
+.btn {
+  // TODO: check for quirks between button.btn and a.btn
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--blue-600);
+  color: var(--gray-50);
+  font-size: var(--font-size-lg);
+  text-decoration: none;
+
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+
+  &:focus-visible {
+    outline: 2px solid var(--blue-300);
+  }
+
+  &:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 #3730a3;
+  }
+
+  &:disabled {
+    background-color: var(--gray-500);
+    color: var(--gray-50);
+    cursor: not-allowed;
+  }
+}
