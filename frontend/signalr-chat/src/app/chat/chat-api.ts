@@ -1,6 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { HubConnection, HubConnectionBuilder, HubConnectionState } from '@microsoft/signalr';
 import { catchError, defer, from, map, of, throwError } from 'rxjs';
+import { environment } from '../environments/environment';
 
 export interface Message {
   username: string;
@@ -13,7 +14,7 @@ export interface Message {
 })
 export class ChatApi {
   private connection: HubConnection;
-  private baseUrl = 'http://localhost:5137';
+  private baseUrl = environment.apiUrl;
   private groupName = 'testChat';
   user = signal({
     username: '',

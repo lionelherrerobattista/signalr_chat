@@ -1,5 +1,25 @@
 # SignalR Chat
 
+## Run app
+
+```bash
+dotnet watch run
+```
+
+Or start the container:
+
+```bash
+docker build -t signalr-chat-backend .
+docker run -p 5000:80 signalr-chat-backend
+```
+
+Or start from docker compose:
+
+```bash
+docker-compose up --build
+docker-compose up -d
+```
+
 
 # User stories
 
