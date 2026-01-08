@@ -1,5 +1,24 @@
 # SignalR Chat
 
+## Run app
+
+```bash
+npm run start
+```
+
+Or start the container:
+
+```bash
+docker build -t signalr-chat-frontend .
+docker run -p 4200:80 signalr-chat-frontend
+```
+
+Or start from docker compose:
+
+```bash
+docker-compose up --build
+docker-compose up -d
+```
 
 # User stories
 
@@ -7,6 +26,8 @@
   - [x] Three pages/components: Landing -> Username -> Chat.
   - [ ] Create route guards when username is not defined?
   - [x] Add animation to page change.
+  - [ ] Add error messages. 
+  - [ ] Prevent accesing the chat if the service is not available.
 - [ ] home
   - [x] Add hero elements.
   - [x] Style create-user button to start app.

@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  # .NET API with SignalR
+  backend:
+    build:
+      context: ./backend/ChatApi
+      dockerfile: Dockerfile
+    container_name: signalr-chat-backend
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+      - CORS_ORIGINS=http://localhost:4200,http://frontend:80
+    networks:
+      - app-network
+
+  # Angular Frontend
+  frontend:
+    build:
+      context: ./frontend/signalr-chat
+      dockerfile: Dockerfile
+    container_name: signalr-chat-frontend
+    ports:
+      - "4200:80"
+    environment:
+      - API_URL=http://backend:8080
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
