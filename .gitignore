@@ -1,0 +1,35 @@
+############################
+# Node / Angular
+############################
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+dist/
+.angular/
+.cache/
+
+############################
+# ASP.NET / Visual Studio
+############################
+bin/
+obj/
+.vs/
+*.user
+*.suo
+
+############################
+# Environment / secrets
+############################
+.env
+.env.*
+
+############################
+# OS / Editor
+############################
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
