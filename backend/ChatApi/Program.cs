@@ -16,6 +16,13 @@ builder.Services.AddSignalR(options =>
     options.AddFilter<RateLimitHubFilter>();
 });
 
+var envOrigins = Environment.GetEnvironmentVariable("PRODUCTION_URL");
+
+var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>()
+    ?? [];
+
+if (allowedOrigins.Length == 0)
+    throw new InvalidOperationException("No CORS origins configured");
 
 builder.Services.AddCors(options =>
 {
@@ -24,8 +31,7 @@ builder.Services.AddCors(options =>
         {
             policy
                 .WithOrigins(
-                    "http://localhost:4200", // local development
-                    "http://frontend:80" // docker container
+                    allowedOrigins
                 )
                 .AllowAnyHeader()
                 .AllowAnyMethod()
