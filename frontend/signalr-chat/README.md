@@ -30,12 +30,13 @@ docker-compose up -d
 ## User stories
 
 - [ ] General UI
-  - [ ] Fix favicon.
+  - [x] Change favicon.
   - [x] Three pages/components: Landing -> Username -> Chat.
-  - [ ] Create route guards when username is not defined?
+  - [x] Create route guards when username is not defined.
   - [x] Add animation to page change.
   - [ ] Add error messages. 
   - [x] Prevent accesing the chat if the service is not available.
+  - [ ] Add dark mode.
   
   
 - [ ] home
@@ -72,4 +73,4 @@ docker-compose up -d
 
 - [x] If users use the same username, both messages appear as outgoing.
 - [x] If user changes name, the message appears as outgoing.
-- [ ] Redirection from /chat to home not working in production.
+- [x] Redirection from /chat to home not working in production.
