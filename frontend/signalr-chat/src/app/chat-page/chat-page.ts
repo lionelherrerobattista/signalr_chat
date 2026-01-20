@@ -1,7 +1,7 @@
 import { Component, effect, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ChatApi, Message } from '../chat/chat-api';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-chat-page',
@@ -11,7 +11,6 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class ChatPage implements OnInit {
   chatApi = inject(ChatApi);
-  private router = inject(Router);
   messageForm = new FormGroup({
     message: new FormControl({ value: '', disabled: !this.chatApi.isConnected() }),
   });
@@ -25,9 +24,6 @@ export class ChatPage implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.chatApi.isConnected());
-    if (this.chatApi.user().username === '') this.router.navigate(['/']);
-
     // start connection and add user to group
     this.chatApi.startConnection().subscribe(() => {
       this.chatApi.addUserToGroup();
