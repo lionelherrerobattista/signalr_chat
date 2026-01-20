@@ -1,22 +1,36 @@
 <div class="chat-header">
-  <h2 class="chat-title">Chat</h2>
+  <h2 class="chat-header__title">Chat</h2>
   <a [routerLink]="'/'" class="btn btn--sm btn--home">Home</a>
 </div>
-<div class="chat-window">
-  @for(message of this.chatApi.messages(); track $index) {
-  <div [class]="checkMessageType(message)">
-    <p class="message-header">{{ message.username }}</p>
-    <p>{{ message.text }}</p>
+@if (chatApi.isConnected()) {
+  <div class="chat-window">
+    @for (message of this.chatApi.messages(); track $index) {
+      <div [class]="checkMessageType(message)">
+        <p class="message-header">{{ message.username }}</p>
+        <p>{{ message.text }}</p>
+      </div>
+    }
   </div>
-  }
-</div>
-<form class="chat-input" [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+} @else {
+  <div class="loader-container">
+    <div class="loader"></div>
+  </div>
+}
+<form class="chat-actions" [formGroup]="messageForm" (ngSubmit)="onSubmit()">
   <input
     type="text"
     name="message"
     id="message"
     formControlName="message"
     placeholder="Write a message"
+    class="chat-actions__input"
   />
-  <button class="btn btn--sm" type="submit" [disabled]="!messageForm.valid">Send</button>
+  <button
+    [class]="'btn btn--sm'"
+    [class.btn--disabled]="!chatApi.isConnected()"
+    type="submit"
+    [disabled]="!messageForm.valid || !chatApi.isConnected"
+  >
+    Send
+  </button>
 </form>

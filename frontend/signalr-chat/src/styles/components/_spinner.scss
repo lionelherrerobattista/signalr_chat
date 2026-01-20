@@ -1,0 +1,17 @@
+/* HTML: <div class="loader"></div> */
+.loader {
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-2xl);
+  animation: l1 1s linear infinite alternate;
+
+  &:before {
+    content: 'Connecting to chat room...';
+  }
+}
+
+@keyframes l1 {
+  to {
+    opacity: 0;
+  }
+}

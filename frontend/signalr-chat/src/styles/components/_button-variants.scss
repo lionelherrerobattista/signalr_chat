@@ -18,3 +18,9 @@
   right: 0rem;
   padding: 0.5rem;
 }
+
+.btn--disabled {
+  background-color: var(--gray-600);
+  color: var(--color-white);
+  animation: none;
+}

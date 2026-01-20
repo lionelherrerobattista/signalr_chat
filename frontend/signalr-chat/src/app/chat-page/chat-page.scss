@@ -22,12 +22,12 @@
   align-items: center;
   min-height: 3rem;
   position: relative;
+}
 
-  .chat-title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.chat-header__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .chat-window {
@@ -46,41 +46,41 @@
   border-radius: 15px;
   max-width: 80%;
   overflow-wrap: anywhere; // allow long words to wrap
+}
 
-  &--incoming {
-    align-self: flex-start;
+.chat-window__message--incoming {
+  align-self: flex-start;
+  background-color: var(--gray-300);
+  color: var(--color-black);
+
+  &::after {
+    // bubble tip
+    content: '';
+    position: absolute;
+    left: -4px;
+    width: 12px;
+    height: 12px;
+    rotate: 45deg;
+    border-radius: 0 0 12px 0;
     background-color: var(--gray-300);
-    color: var(--color-black);
-
-    &::after {
-      // bubble tip
-      content: '';
-      position: absolute;
-      left: -4px;
-      width: 12px;
-      height: 12px;
-      rotate: 45deg;
-      border-radius: 0 0 12px 0;
-      background-color: var(--gray-300);
-    }
   }
+}
 
-  &--outgoing {
-    align-self: flex-end;
+.chat-window__message--outgoing {
+  align-self: flex-end;
+  background-color: var(--blue-600);
+  color: var(--gray-50);
+
+  &::after {
+    // bubble tip
+    content: '';
+    position: absolute;
+    right: -4px;
+    width: 12px;
+    height: 12px;
+    rotate: 45deg;
+    border-radius: 0 0 12px 0;
     background-color: var(--blue-600);
-    color: var(--gray-50);
-
-    &::after {
-      // bubble tip
-      content: '';
-      position: absolute;
-      right: -4px;
-      width: 12px;
-      height: 12px;
-      rotate: 45deg;
-      border-radius: 0 0 12px 0;
-      background-color: var(--blue-600);
-    }
   }
 }
 
@@ -88,30 +88,22 @@
   font-weight: var(--font-weight-bold);
 }
 
-.chat-input {
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat-actions {
   display: flex;
   min-height: 2.5rem;
   gap: 1rem;
+}
 
-  input {
-    flex: 1;
-    border: none;
-    border-radius: 20px;
-    box-shadow: var(--shadow-input);
-    padding: 0.5rem 1rem;
-  }
-
-  button {
-    border: none;
-    border-radius: 5px;
-    background-color: var(--blue-600);
-    color: var(--gray-50);
-    font-size: var(--font-size-lg);
-
-    @include m.respond(lg) {
-      &:hover {
-        cursor: pointer;
-      }
-    }
-  }
+.chat-actions__input {
+  flex: 1;
+  border: none;
+  border-radius: 20px;
+  box-shadow: var(--shadow-input);
+  padding: 0.5rem 1rem;
 }

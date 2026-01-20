@@ -2,6 +2,7 @@ import { Injectable, signal } from '@angular/core';
 import { HubConnection, HubConnectionBuilder, HubConnectionState } from '@microsoft/signalr';
 import { catchError, defer, from, map, of, throwError } from 'rxjs';
 import { environment } from '../environments/environment';
+import { toast } from 'ngx-sonner';
 
 export interface Message {
   username: string;
@@ -21,6 +22,7 @@ export class ChatApi {
     connectionId: '',
   });
   messages = signal<Message[]>([]); // convert to signal
+  isConnected = signal(false);
 
   constructor() {
     // initialize connection and handlers
@@ -38,12 +40,14 @@ export class ChatApi {
   private createHandlers() {
     // handle to reconnect with the server on disconnect
     this.connection.onreconnecting((err) => {
+      this.isConnected.set(false);
       console.warn(`Connection lost due to error "${err}". Reconnecting...`);
     });
 
     this.connection.onclose((err) => {
+      this.isConnected.set(false);
       console.error(
-        `Connection closed due to error "${err}". Try refreshing this page to restart the connection.`
+        `Connection closed due to error "${err}". Try refreshing this page to restart the connection.`,
       );
     });
 
@@ -58,6 +62,13 @@ export class ChatApi {
       });
     });
 
+    this.connection.on('userJoined', (message, connectionId, userIdentifier) => {
+      if (connectionId !== this.user().connectionId && this.user().connectionId !== '')
+        toast(message, {
+          position: 'top-right',
+        });
+    });
+
     this.connection.on(
       'messageReceived',
       (username: string, connectionId: string, message: string) => {
@@ -67,7 +78,7 @@ export class ChatApi {
           ...messages,
           { username, connectionId, text: message },
         ]);
-      }
+      },
     );
   }
 
@@ -85,13 +96,25 @@ export class ChatApi {
         // or return of(this.connection); expose connection obj?
         return of(true);
 
+      toast.info('Connecting to chat...', {
+        position: 'top-right',
+      });
+
       // start connection
       return from(this.connection.start()).pipe(
-        map((response) => true), // TODO: use connection id to map connectionId -> username
+        map((response) => {
+          toast.success('Connected to chat', {
+            position: 'top-right',
+          });
+
+          this.isConnected.set(true);
+
+          return true;
+        }), // TODO: use connection id to map connectionId -> username
         catchError((err) => {
           console.error('SignalR failed to start', err);
           return throwError(() => err);
-        })
+        }),
       );
     });
   }
@@ -125,7 +148,7 @@ export class ChatApi {
     }
 
     this.connection
-      .invoke('AddToGroup', this.groupName)
+      .invoke('AddToGroup', this.groupName, this.user().username)
       .then((message) => {})
       .catch((err) => console.error(err));
   }
@@ -149,7 +172,7 @@ export class ChatApi {
       this.user().username,
       this.user().connectionId,
       message,
-      this.groupName
+      this.groupName,
     );
   }
 }

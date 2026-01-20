@@ -22,7 +22,7 @@ namespace ChatApi.Hubs
             await base.OnDisconnectedAsync(exception);
         }
         // add to a group
-        public async Task<string> AddToGroup(string groupName)
+        public async Task<string> AddToGroup(string groupName, string username)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
 
@@ -32,8 +32,10 @@ namespace ChatApi.Hubs
             if (Context.Items["group"] == null)
                 Context.Items.Add("group", groupName); // persist the name in memory, if no db added
 
+
+            // notify users that a user has joined
             await Clients.Group(groupName)
-                .SendAsync("Send", $"{Context.ConnectionId} has joined the group {groupName}.");
+                .SendAsync("userJoined", $"{username} has joined the group {groupName}.", Context.ConnectionId, Context.UserIdentifier);
 
             return $"{Context.ConnectionId} has joined the group {groupName}.";
         }
