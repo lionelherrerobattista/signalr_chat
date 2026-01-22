@@ -1,7 +1,7 @@
 @use '../../styles/scss/mixins' as m;
 
 :host {
-  min-height: 100vh;
+  min-height: 100svh;
   display: grid;
   grid-template-rows: min-content min-content min-content 1fr;
   align-items: center;
@@ -17,7 +17,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 16vh;
+  min-height: 16svh;
 }
 
 .main-page__text {
