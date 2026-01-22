@@ -1,4 +1,4 @@
-import { CanActivateFn, Router } from '@angular/router';
+import { CanActivateFn, RedirectCommand, Router } from '@angular/router';
 import { ChatApi } from '../../chat/chat-api';
 import { inject } from '@angular/core';
 
@@ -7,8 +7,8 @@ export const hasUserGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
 
   if (chatApi.user().username === '') {
-    router.navigate(['/']);
-    return false;
+    const homePath = router.parseUrl('/');
+    return new RedirectCommand(homePath);
   }
 
   return true;

@@ -30,6 +30,7 @@ docker-compose up -d
 ## User stories
 
 - [ ] General UI
+  - [x] Change `vh` unit to `svh` or `dvh` to avoid extra scrolling.
   - [x] Change favicon.
   - [x] Three pages/components: Landing -> Username -> Chat.
   - [x] Create route guards when username is not defined.
