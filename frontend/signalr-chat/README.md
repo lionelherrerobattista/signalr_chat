@@ -75,3 +75,5 @@ docker-compose up -d
 - [x] If users use the same username, both messages appear as outgoing.
 - [x] If user changes name, the message appears as outgoing.
 - [x] Redirection from /chat to home not working in production.
+- [ ] User can't reconnect.
+- [ ] Content too wide on mobile (chrome Samsung A53)
