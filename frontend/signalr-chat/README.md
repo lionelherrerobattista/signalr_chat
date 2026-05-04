@@ -35,7 +35,7 @@ docker-compose up -d
   - [x] Three pages/components: Landing -> Username -> Chat.
   - [x] Create route guards when username is not defined.
   - [x] Add animation to page change.
-  - [ ] Add error messages. 
+  - [x] Add error messages. 
   - [x] Prevent accesing the chat if the service is not available.
   - [ ] Add dark mode.
   
