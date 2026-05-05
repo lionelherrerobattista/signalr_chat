@@ -23,6 +23,7 @@ export class ChatApi {
   });
   messages = signal<Message[]>([]); // convert to signal
   isConnected = signal(false);
+  hasFailed = signal(false);
 
   constructor() {
     // initialize connection and handlers
@@ -112,6 +113,10 @@ export class ChatApi {
           return true;
         }), // TODO: use connection id to map connectionId -> username
         catchError((err) => {
+          this.hasFailed.set(true);
+          toast.error('Chat failed to start', {
+            position: 'top-right',
+          });
           console.error('SignalR failed to start', err);
           return throwError(() => err);
         }),

@@ -35,7 +35,7 @@ docker-compose up -d
   - [x] Three pages/components: Landing -> Username -> Chat.
   - [x] Create route guards when username is not defined.
   - [x] Add animation to page change.
-  - [ ] Add error messages. 
+  - [x] Add error messages. 
   - [x] Prevent accesing the chat if the service is not available.
   - [ ] Add dark mode.
   
@@ -75,3 +75,5 @@ docker-compose up -d
 - [x] If users use the same username, both messages appear as outgoing.
 - [x] If user changes name, the message appears as outgoing.
 - [x] Redirection from /chat to home not working in production.
+- [ ] User can't reconnect.
+- [ ] Content too wide on mobile (chrome Samsung A53)

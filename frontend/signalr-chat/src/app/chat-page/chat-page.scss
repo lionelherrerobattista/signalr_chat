@@ -94,6 +94,14 @@
   align-items: center;
 }
 
+.error-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
 .chat-actions {
   display: flex;
   min-height: 2.5rem;
