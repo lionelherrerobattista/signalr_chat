@@ -39,12 +39,13 @@ export class ChatApi {
    * Creates the handlers for the SignalR connection
    */
   private createHandlers() {
-    // handle to reconnect with the server on disconnect
+    // to reconnect with the server on disconnect:
     this.connection.onreconnecting((err) => {
       this.isConnected.set(false);
       console.warn(`Connection lost due to error "${err}". Reconnecting...`);
     });
 
+    // to handle closed connection
     this.connection.onclose((err) => {
       this.isConnected.set(false);
       console.error(
@@ -52,7 +53,7 @@ export class ChatApi {
       );
     });
 
-    // define message handlers
+    // message handlers:
     this.connection.on('userConnected', (connectionId) => {
       // add message to array
       this.user.update((value) => {
@@ -73,7 +74,6 @@ export class ChatApi {
     this.connection.on(
       'messageReceived',
       (username: string, connectionId: string, message: string) => {
-        // TODO: create message object
         // add message to array
         this.messages.update((messages) => [
           ...messages,

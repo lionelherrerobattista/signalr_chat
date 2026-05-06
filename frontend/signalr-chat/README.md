@@ -26,7 +26,6 @@ docker-compose up -d
 - SignalR
 - ngx-sonner
 
-
 ## User stories
 
 - [ ] General UI
@@ -35,18 +34,17 @@ docker-compose up -d
   - [x] Three pages/components: Landing -> Username -> Chat.
   - [x] Create route guards when username is not defined.
   - [x] Add animation to page change.
-  - [x] Add error messages. 
+  - [x] Add error messages.
   - [x] Prevent accesing the chat if the service is not available.
   - [ ] Add dark mode.
-  
-  
-- [ ] home
+
+- [ ] `home`
   - [x] Add hero elements.
   - [x] Style create-user button to start app.
   - [x] Add image.
   - [ ] Slides from the left when going back to home.
 
-- [ ] create-user
+- [ ] `create-user`
   - [x] Add button animation.
   - [x] Add form validation.
   - [x] Add form validation messages.
@@ -54,7 +52,7 @@ docker-compose up -d
   - [ ] Reset stored messages if any.
   - [x] Show stored name and allow to change it.
 
-- [ ] chat-page
+- [ ] `chat-page`
   - [x] Add connecting message while SignalR connection is in progress.
   - [x] Add user connected message in chat
   - [ ] Avoid connecting when username is not defined
@@ -65,10 +63,14 @@ docker-compose up -d
   - [ ] Guard before leaving the page?
   - [x] Username in bold
 
+- [ ] `chat-api`
+  - [ ] create `checkConnection()` function.
+
 - [ ] Refactor
   - [ ] Improve scss classes. Avoid code repetition.
   - [ ] Store the mapping between connectionId and user in a separate data structure?
-  - [ ] Send user object to backend?
+  - [ ] Send user object to backend(?)
+  - [ ] Create user service(?)
 
 ## Bugs
 
@@ -77,3 +79,25 @@ docker-compose up -d
 - [x] Redirection from /chat to home not working in production.
 - [ ] User can't reconnect.
 - [ ] Content too wide on mobile (chrome Samsung A53)
+
+## Components
+
+- `home`
+  - Initial view.
+  - Hero section and button to enter the chat room.
+- `create-user`
+  - View to enter or edit the username.
+- `chat`
+  - Chat view.
+  - Connects to SignalR API.
+  - Allows to send messages to the connected users.
+
+## Services
+
+- `chat-api`
+  - Handles requests to the SignalR API.
+  - Defines a set of handlers to respond to different events.
+  - Starts the connection to the SignalR hub.
+  - Sets the username.
+  - Add user to group.
+
